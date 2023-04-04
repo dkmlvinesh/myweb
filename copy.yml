@@ -1,7 +1,9 @@
 ---
- - hosts: webservers
-   tasks:
-     - name: copy the file from local to remote
-       copy:
-         src: target/myweb-8.2.0.war
-         dest: /usr/local/apache-tomcat-9.0.59/webapps/
+- hosts: all
+  become: yes
+  tasks:
+  - name: Install git
+    apt:
+      name: git
+      state: present
+      cache_valid_time: 3600
